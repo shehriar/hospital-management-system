@@ -1,0 +1,61 @@
+.app-container{
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+}
+
+.left-column{
+    background-color: rgb(47, 47, 49);
+    margin-top: 15%;
+    height: 90vh;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.left-column button{
+    margin:10% auto;
+    display:block;
+    cursor: pointer;
+}
+
+.normal-buttons button{
+    width: 90%;
+    height: 40px;
+    background-color: transparent;
+    border: 0px;
+    color: rgb(207, 207, 207);
+    /* font-weight: 600; */
+    font-size: 14px;
+    border-radius: 10px;
+    margin-bottom: 20%;
+}
+
+.normal-buttons button:hover{
+    transform: scale(1.05);
+    background-color: rgb(65, 65, 67);
+}
+
+.user-buttons button{
+    width: 70%;
+    height: 35px;
+    font-weight: bold;
+    border-radius: 20px;
+    border: 0px;
+}
+
+.user-buttons button:hover{
+    transform: scale(1.07);
+}
+
+.signup-button{
+    /* background-color: rgb(7, 153, 7); */
+    background-color: rgb(96, 122, 218);
+}
+
+.login-button{
+    /* background-color: grey; */
+    background-color: rgb(247, 126, 33);
+}
+
+.right-column{
+    height: 100%;
+}
