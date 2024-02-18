@@ -5,37 +5,57 @@
         <div class = "column">
             <div class = "details-container">
                 <form>
-                    <label for="fullname">Full Name:</label><br>
+                    <div class = "row">
+                        <label for="fullname">Full Name: <span style = "color: red;">*</span></label>
+                        <div *ngIf = "!nameError" class = "error">Error</div>
+                    </div>
+                    <br>
                     <input type="text" id="fullname" name="fullname"><br>
 
                     <div style="margin-bottom: 20%;"></div>
                     
-                    <label for="email">Email Address:</label><br>
+                    <div class = "row">
+                        <label for="email">Email Address: <span style = "color: red;">*</span></label>
+                        <div *ngIf = "!emailError" class = "error">Error</div>
+                    </div> <br>
                     <input type="text" id="email" name="email"><br>
 
                     <div style="margin-bottom: 20%;"></div>
 
                     <div class = "dob">
-                        <label>Date of Birth: (dd-mm-yyyy)</label><br><br>
-                        <label for="day">Day</label> <label for="month">Month</label> <label for="year">Year</label><br>
+                        <div class = "row">
+                            <label>Date of Birth:</label>
+                            <div *ngIf = "!dobError" class = "error">Error</div>
+                        </div>
+                        (dd-mm-yyyy)
+                        <br><br>
+                        <label for="day">Day <span style = "color: red;">*</span></label>
+                        <label for="month">Month <span style = "color: red;">*</span></label>
+                        <label for="year">Year <span style = "color: red;">*</span></label><br>
                         <input type="number" id="day" name="day" min="0">
                         <input type="number" id="month" name="month" min="0">
                         <input style = "width: 50px !important;" type="number" id="year" name="year" min="0">
                     </div>
 
                     <div style="margin-bottom: 20%;"></div>
-
-                    <label for="password">Password:</label><br>
+                    <label for="password">Password: <span style = "color: red;">*</span></label><br>
                     <input type="password" id="password" name="password"><br>
 
                     <div style="margin-bottom: 20%;"></div>
-
-                    <label for="cpassword">Confirm Password:</label><br>
+                    <div class = "row">
+                        <label for="cpassword">Confirm Password: <span style = "color: red;">*</span></label>
+                        <div *ngIf = "!passwordError" class = "error">Error</div>
+                    </div>
+                    <br>
                     <input type="password" id="cpassword" name="cpassword"><br>
                     
                     <div style="margin-bottom: 20%;"></div>
 
-                    <label for="phone">Phone Number:</label><br>
+                    <div class = "row">
+                        <label for="phone">Phone Number: <span style = "color: red;">*</span></label>
+                        <div *ngIf = "!phoneError" class = "error">Error</div>
+                    </div>
+                    <br>
                     <input type="number" id="phone" name="phone"><br>
                 </form>
             </div>
