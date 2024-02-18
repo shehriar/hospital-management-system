@@ -43,6 +43,7 @@ export class Database{
     }
 
     async returnAllPatients(){
+        // const query = "DELETE FROM Patient WHERE patient_email = 'rimsharizvi@gmail.com';"
         const query = "SELECT * from Patient;"
         const [result] = await pool.query(query);
         console.log(result);
@@ -61,7 +62,7 @@ export class Database{
 
 // ADD DOSAGE TO MEDICATION
 
-// let db = new Database();
-// db.returnAllPatients();
+let db = new Database();
+db.returnAllPatients();
 // const dob = new Date("2000-02-02").toISOString().slice(0, 10);
 // db.insertToPatient(['John Doe', 'johndoe@email.com', '1998-02-14', '123456789', 'password1288']);

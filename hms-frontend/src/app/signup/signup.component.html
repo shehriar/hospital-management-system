@@ -1,0 +1,50 @@
+<div class = "signup-container">
+    <div style = "margin-left: 8%;"></div>
+    <img height = "100px" width = "100px" src="assets/home/data-medic-logo2.webp" alt="">
+    <div class = "vertically-align">
+        <div class = "column">
+            <div class = "details-container">
+                <form>
+                    <label for="fullname">Full Name:</label><br>
+                    <input type="text" id="fullname" name="fullname"><br>
+
+                    <div style="margin-bottom: 20%;"></div>
+                    
+                    <label for="email">Email Address:</label><br>
+                    <input type="text" id="email" name="email"><br>
+
+                    <div style="margin-bottom: 20%;"></div>
+
+                    <div class = "dob">
+                        <label>Date of Birth: (dd-mm-yyyy)</label><br><br>
+                        <label for="day">Day</label> <label for="month">Month</label> <label for="year">Year</label><br>
+                        <input type="number" id="day" name="day" min="0">
+                        <input type="number" id="month" name="month" min="0">
+                        <input style = "width: 50px !important;" type="number" id="year" name="year" min="0">
+                    </div>
+
+                    <div style="margin-bottom: 20%;"></div>
+
+                    <label for="password">Password:</label><br>
+                    <input type="password" id="password" name="password"><br>
+
+                    <div style="margin-bottom: 20%;"></div>
+
+                    <label for="cpassword">Confirm Password:</label><br>
+                    <input type="password" id="cpassword" name="cpassword"><br>
+                    
+                    <div style="margin-bottom: 20%;"></div>
+
+                    <label for="phone">Phone Number:</label><br>
+                    <input type="number" id="phone" name="phone"><br>
+                </form>
+            </div>
+            
+            <div style="margin-bottom: 20%;"></div>
+            <div class = "user-buttons row">
+                <button class = "back-button" (click)="onButtonClick('')"> Back </button>
+                <button class = "signup-button" (click)="onSubmit()"> Sign up</button>
+            </div>
+        </div>
+    </div>
+</div>

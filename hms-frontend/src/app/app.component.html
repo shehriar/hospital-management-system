@@ -1,28 +1,36 @@
-<div class = "app-container">
-  <div class = "left-column">
-    <div *ngIf = "loggedIn == false" class = "user-buttons">
-      <button class = "signup-button">Sign up</button>
-      <button class = "login-button"> Login</button>
-    </div> 
-    <div *ngIf = "loggedIn == true">
-      <h2>{{username}}</h2>
+<div *ngIf = "showColumns">
+  <div class = "app-container">
+    <div class = "left-column">
+      <div *ngIf = "loggedIn == false" class = "user-buttons">
+        <button class = "signup-button" (click)="onButtonClick('signup')">Sign up</button>
+        <button class = "login-button" (click)="onButtonClick('login')"> Login</button>
+      </div> 
+      <div *ngIf = "loggedIn == true">
+        <h2>{{username}}</h2>
+      </div>
+      <div style="padding: 1%;"><hr style="border: 0.2px solid grey;"></div>
+      <div style="padding: 10%;"></div>
+      <div class = "normal-buttons">
+        <button (click)="onButtonClick('')">Home</button>
+        <button (click)="onButtonClick('book-appointment')">Book an Appointment</button>
+        <button>My Appointments</button>
+        <button>Diagnosis</button>
+        <button>My Medication</button>
+        <button>Contact Us</button>
+      </div>
     </div>
-    <div style="padding: 1%;"><hr style="border: 0.2px solid grey;"></div>
-    <div style="padding: 10%;"></div>
-    <div class = "normal-buttons">
-      <button (click)="onButtonClick('')">Home</button>
-      <button (click)="onButtonClick('book-appointment')">Book an Appointment</button>
-      <button>My Appointments</button>
-      <button>Diagnosis</button>
-      <button>My Medication</button>
-      <button>Contact Us</button>
-    </div>
-  </div>
 
-  
-  <div class = "right-column">
-    <main id = "content">
-      <router-outlet></router-outlet>
-    </main>
+    
+    <div class = "right-column">
+      <main id = "content">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
   </div>
+</div>
+
+<div *ngIf = "!showColumns">
+  <main id = "content">
+    <router-outlet></router-outlet>
+  </main>
 </div>
