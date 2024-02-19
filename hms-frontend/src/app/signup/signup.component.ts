@@ -38,15 +38,16 @@ export class SignupComponent {
   onSubmit(){
     if(this.errorChecking()){
       this.populateUserDetails();
+      this.patientService.setPatientDetails(this.patientDetails);
       this.patientService.submitPatientDetails(this.patientDetails).subscribe({
         next: (response) => {
           console.log(response)
-          this.patientService.setSelectedVehicle(this.patientDetails);
         },
         error: (error) => {
           console.error(error);
         }
       });
+      this.onButtonClick('');
     }
   }
 

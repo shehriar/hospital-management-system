@@ -42,6 +42,18 @@ export class Database{
         }
     }
 
+    async verifyLogin(values){
+        try{
+            const query = "SELECT * FROM Patient WHERE patient_email = ? AND patient_password = ?;"
+            const [queryResult] = await pool.query(query, values);
+            // const result = queryResult[0]['count(*)'];
+            return queryResult;
+        } 
+        catch (err){
+            console.log(err);
+        }
+    }
+
     async returnAllPatients(){
         // const query = "DELETE FROM Patient WHERE patient_email = 'rimsharizvi@gmail.com';"
         const query = "SELECT * from Patient;"
@@ -63,6 +75,7 @@ export class Database{
 // ADD DOSAGE TO MEDICATION
 
 let db = new Database();
-db.returnAllPatients();
+// db.returnAllPatients();
+db.verifyLogin(['sheryl@gmail.com', 'rimsha']);
 // const dob = new Date("2000-02-02").toISOString().slice(0, 10);
 // db.insertToPatient(['John Doe', 'johndoe@email.com', '1998-02-14', '123456789', 'password1288']);

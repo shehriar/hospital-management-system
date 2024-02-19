@@ -13,12 +13,19 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/api/patients', (req, res) => {
-    // console.log(req.body['name']);
     const patientDetailsArray = [req.body['name'], req.body['email'], req.body['dob'], req.body['phone'], req.body['password']];
-//   const valuesArray = Object.values(req.body);
-    console.log(patientDetailsArray); 
     db.insertToPatient(patientDetailsArray);
     res.status(200).send('Patient details received');
+});
+
+app.post('/api/login', (req, res) => {
+  const loginDetails = req.body;
+  // console.log(loginDetails)
+  db.verifyLogin(loginDetails).then(function(result){
+    const loginVerified = result;
+    console.log(loginVerified);
+    res.status(200).send(loginVerified)
+  });
 });
 
 app.listen(port, () => {

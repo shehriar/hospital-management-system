@@ -15,11 +15,17 @@ export class PatientDetailsService {
     return this.http.post('http://localhost:3000/api/patients', patientDetails);
   }
 
-  setSelectedVehicle(patient : PatientDetails) {
+  submitLoginDetails(loginDetails : any): Observable<any>{
+    console.log(loginDetails)
+    return this.http.post('http://localhost:3000/api/login', loginDetails);
+  }
+
+  setPatientDetails(patient : PatientDetails) {
+    console.log(patient);
     this.patientDetailsSubject.next(patient);
   }
 
-  getSelectedVehicle(){
+  getPatientDetails(){
     return this.patientDetails;
   }
 }
