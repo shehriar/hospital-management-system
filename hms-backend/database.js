@@ -10,9 +10,9 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE,
 }).promise();
 
-// const query = "ALTER TABLE Appointment ADD patient_id INT;"
+// const query = "ALTER TABLE Appointment ADD billing_cost INT;"
 // const [result] = await pool.query(query);
-// console.log(result);
+// // console.log(result);
 
 export class Database{
     async insertToDoctor(values){
@@ -35,10 +35,10 @@ export class Database{
         try{
             const query = "INSERT INTO Patient(patient_name, patient_email, dob, phone, patient_password) VALUES (?, ?, ?, ?, ?)";
             const [result] = await pool.query(query, values);
-            console.log(result)
+            return true;
         }
         catch(err){
-            console.log("Error inserting to Patient table: ", err);
+            return false;
         }
     }
 
@@ -54,6 +54,18 @@ export class Database{
         }
     }
 
+    async returnPatientID(value){
+        try{
+            // console.log([value]);
+            const query = "SELECT Patient_id FROM Patient WHERE patient_email = ?;"
+            const [result] = await pool.query(query, [value]);
+            return result[0];
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
     async returnAllPatients(){
         // const query = "DELETE FROM Patient WHERE patient_email = 'rimsharizvi@gmail.com';"
         const query = "SELECT * from Patient;"
@@ -63,7 +75,7 @@ export class Database{
 
     async insertToAppointment(values){
         try{
-            const query = "INSERT INTO Appointment(appointent_date) VALUES (?)";
+            const query = "INSERT INTO Appointment(appointent_date, doctor_id, patient_id, billing_cost) VALUES (?, ?, ?, ?)";
             await pool.query(query, values);
         }
         catch(err){
@@ -72,10 +84,9 @@ export class Database{
     }
 };
 
-// ADD DOSAGE TO MEDICATION
-
-let db = new Database();
+// let db = new Database();
+// // db.returnAllDoctors();
 // db.returnAllPatients();
-db.verifyLogin(['sheryl@gmail.com', 'rimsha']);
+// db.verifyLogin(['sheryl@gmail.com', 'rimsha']);
 // const dob = new Date("2000-02-02").toISOString().slice(0, 10);
 // db.insertToPatient(['John Doe', 'johndoe@email.com', '1998-02-14', '123456789', 'password1288']);

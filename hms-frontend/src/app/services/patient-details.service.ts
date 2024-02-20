@@ -11,13 +11,16 @@ export class PatientDetailsService {
   public patientDetails = this.patientDetailsSubject.asObservable();
   constructor(private http : HttpClient) {}
 
-  submitPatientDetails(patientDetails : PatientDetails){
+  submitPatientDetails(patientDetails : PatientDetails) : Observable<any>{
     return this.http.post('http://localhost:3000/api/patients', patientDetails);
   }
 
   submitLoginDetails(loginDetails : any): Observable<any>{
-    console.log(loginDetails)
     return this.http.post('http://localhost:3000/api/login', loginDetails);
+  }
+
+  getPatientID(email : any) : Observable<any>{
+    return this.http.post('http://localhost:3000/api/patient_id', [email])
   }
 
   setPatientDetails(patient : PatientDetails) {

@@ -13,6 +13,7 @@ export class SignupComponent {
   day : any;
   month : any;
   year : any;
+  email : any;
 
   // True if no error.
   nameError = true;
@@ -21,8 +22,12 @@ export class SignupComponent {
   passwordError = true;
   phoneError = true;
 
+  // True if duplicate
+  duplicateEmail = false;
+
   constructor(private router:Router, private patientService : PatientDetailsService){
     this.patientDetails = {
+      id: 0,
       name: '',
       email: '',
       password: '',
@@ -41,19 +46,19 @@ export class SignupComponent {
       this.patientService.setPatientDetails(this.patientDetails);
       this.patientService.submitPatientDetails(this.patientDetails).subscribe({
         next: (response) => {
-          console.log(response)
+          this.duplicateEmail = !response;
         },
         error: (error) => {
           console.error(error);
         }
       });
-      this.onButtonClick('');
+      if(this.duplicateEmail){
+        this.onButtonClick('');
+      }
     }
   }
 
   populateUserDetails(){
-    this.patientDetails.name = (document.getElementById("fullname") as HTMLInputElement).value;
-    this.patientDetails.email = (document.getElementById("email") as HTMLInputElement).value;
     this.day = (document.getElementById("day") as HTMLInputElement).value;
     this.month = (document.getElementById("month") as HTMLInputElement).value;
     this.year = (document.getElementById("year") as HTMLInputElement).value;
@@ -70,6 +75,8 @@ export class SignupComponent {
     
     this.patientDetails.dob = this.year + "-" + this.month + "-" + this.day;
 
+    this.patientDetails.name = (document.getElementById("fullname") as HTMLInputElement).value;
+    this.patientDetails.email = (document.getElementById("email") as HTMLInputElement).value;
     this.patientDetails.password = (document.getElementById("password") as HTMLInputElement).value;
     this.patientDetails.phone = (document.getElementById("phone") as HTMLInputElement).value;
   }
@@ -98,11 +105,11 @@ export class SignupComponent {
   }
 
   errorCheckEmail() : boolean{
-    let email = (document.getElementById("email") as HTMLInputElement).value;
-    for(let i = 0; i<email.length; i++){
-      if(email[i] == '@'){
-        for(let j = i; j<email.length; j++){
-          if(email[j] == '.'){
+    this.email = (document.getElementById("email") as HTMLInputElement).value;
+    for(let i = 0; i<this.email.length; i++){
+      if(this.email[i] == '@'){
+        for(let j = i; j<this.email.length; j++){
+          if(this.email[j] == '.'){
             return true;
           }
         }

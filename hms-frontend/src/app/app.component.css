@@ -1,3 +1,13 @@
+.row{
+    display: flex;
+}
+
+.username h2{
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(243, 141, 63);
+    font-size: 24px;
+}
+
 .app-container{
     display: grid;
     grid-template-columns: 1fr 7fr;

@@ -14,16 +14,26 @@ app.use(bodyParser.json());
 
 app.post('/api/patients', (req, res) => {
     const patientDetailsArray = [req.body['name'], req.body['email'], req.body['dob'], req.body['phone'], req.body['password']];
-    db.insertToPatient(patientDetailsArray);
-    res.status(200).send('Patient details received');
+    db.insertToPatient(patientDetailsArray).then(function(result){
+      res.status(200).send(result);
+    });
 });
+
+app.post('/api/patient_id', (req, res) => {
+  // console.log("ssss");
+  // // console.log(req.body[0]);
+  db.returnPatientID(req.body[0]).then(function(result){
+    // console.log(result);
+    res.status(200).send(result);
+  })
+})
 
 app.post('/api/login', (req, res) => {
   const loginDetails = req.body;
   // console.log(loginDetails)
   db.verifyLogin(loginDetails).then(function(result){
     const loginVerified = result;
-    console.log(loginVerified);
+    // console.log(loginVerified);
     res.status(200).send(loginVerified)
   });
 });

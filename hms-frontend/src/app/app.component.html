@@ -5,7 +5,8 @@
         <button class = "signup-button" (click)="onButtonClick('signup')">Sign up</button>
         <button class = "login-button" (click)="onButtonClick('login')"> Login</button>
       </div> 
-      <div *ngIf = "loggedIn == true">
+      <div *ngIf = "loggedIn == true" class="row username">
+        <img style = "margin-top: 4%; margin-right: 8%; margin-left: 4%;" height="50px" src="assets/home/user_image.png" alt="">
         <h2>{{username}}</h2>
       </div>
       <div style="padding: 1%;"><hr style="border: 0.2px solid grey;"></div>

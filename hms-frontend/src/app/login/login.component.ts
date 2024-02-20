@@ -15,6 +15,7 @@ export class LoginComponent {
   loginFailed : boolean = false;
   constructor(private router:Router, private patientService : PatientDetailsService){
     this.patientDetails = {
+      id: 0,
       name: '',
       email: '',
       password: '',
@@ -44,15 +45,24 @@ export class LoginComponent {
   }
 
   populatePatientDetails(user : any){
-    this.patientDetails = {
-      name : user['patient_name'],
-      email : user['patient_email'],
-      password: user['patient_password'],
-      phone: user['phone'],
-      dob: user['dob'],
-    }
-    this.patientService.setPatientDetails(this.patientDetails);
-    console.log(this.patientDetails);
+    let id : any;
+    this.patientService.getPatientID(this.email).subscribe({
+      next: (response) => {
+        id = response['Patient_id'];
+        this.patientDetails = {
+          id : id,
+          name : user['patient_name'],
+          email : user['patient_email'],
+          password: user['patient_password'],
+          phone: user['phone'],
+          dob: user['dob'],
+        }
+        this.patientService.setPatientDetails(this.patientDetails);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
   }
 
   onSubmit(){

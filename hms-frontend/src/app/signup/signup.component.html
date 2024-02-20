@@ -66,6 +66,9 @@
                 <button class = "back-button" (click)="onButtonClick('')"> Back </button>
                 <button class = "signup-button" (click)="onSubmit()"> Sign up</button>
             </div>
+            <div *ngIf = "duplicateEmail" style="text-align: center;">
+                <p style = "color: red;">Email already exists!</p>
+            </div>
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 export interface PatientDetails {
-    // id : any;
+    id : any;
     name : any;
     email : any;
     dob : any;
