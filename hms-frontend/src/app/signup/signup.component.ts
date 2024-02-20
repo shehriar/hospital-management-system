@@ -40,21 +40,33 @@ export class SignupComponent {
     this.router.navigateByUrl(path);
   }
 
+  // Checks for errors => Populates the user details => Receives and saves the ID of user => Sets Patient Detials in Service
   onSubmit(){
     if(this.errorChecking()){
       this.populateUserDetails();
       this.patientService.setPatientDetails(this.patientDetails);
       this.patientService.submitPatientDetails(this.patientDetails).subscribe({
         next: (response) => {
+          let id : any;
+          this.patientService.getPatientID(this.email).subscribe({
+            next: (response) => {
+              id = response['Patient_id'];
+              this.patientDetails.id = id;
+              this.patientService.setPatientDetails(this.patientDetails);
+            },
+            error: (error) => {
+              console.error(error);
+            }
+          });
           this.duplicateEmail = !response;
+          if(!this.duplicateEmail){
+            this.onButtonClick('');
+          }
         },
         error: (error) => {
           console.error(error);
         }
       });
-      if(this.duplicateEmail){
-        this.onButtonClick('');
-      }
     }
   }
 
@@ -74,7 +86,7 @@ export class SignupComponent {
     }
     
     this.patientDetails.dob = this.year + "-" + this.month + "-" + this.day;
-
+    this.patientDetails.id = 0;
     this.patientDetails.name = (document.getElementById("fullname") as HTMLInputElement).value;
     this.patientDetails.email = (document.getElementById("email") as HTMLInputElement).value;
     this.patientDetails.password = (document.getElementById("password") as HTMLInputElement).value;
