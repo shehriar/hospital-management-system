@@ -20,21 +20,23 @@ app.post('/api/patients', (req, res) => {
 });
 
 app.post('/api/patient_id', (req, res) => {
-  // console.log("ssss");
-  // // console.log(req.body[0]);
   db.returnPatientID(req.body[0]).then(function(result){
-    // console.log(result);
     res.status(200).send(result);
   })
 })
 
 app.post('/api/login', (req, res) => {
   const loginDetails = req.body;
-  // console.log(loginDetails)
   db.verifyLogin(loginDetails).then(function(result){
     const loginVerified = result;
-    // console.log(loginVerified);
     res.status(200).send(loginVerified)
+  });
+});
+
+app.get('/api/all-doctors', (req, res) => {
+  db.returnAllDoctors().then(function(result){
+    console.log(result);
+    res.status(200).send(result);
   });
 });
 

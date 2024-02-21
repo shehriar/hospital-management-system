@@ -20,7 +20,7 @@ export class PatientDetailsService {
   }
 
   getPatientID(email : any) : Observable<any>{
-    return this.http.post('http://localhost:3000/api/patient_id', [email])
+    return this.http.post('http://localhost:3000/api/patient_id', [email]);
   }
 
   setPatientDetails(patient : PatientDetails) {

@@ -1,0 +1,70 @@
+.main-container{
+    margin-left: 3%;
+    align-items: center;
+}
+.scrollable-container{
+    width: 70em;
+    margin-left: 1%;
+    margin-right: 1%;
+    height: 90vh;
+    /* background-color: white; */
+    scroll-behavior: smooth;
+}
+
+.row{
+    display: flex;
+    /*justify-content: space-between; */
+}
+
+.scroll{
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.doctor-container{
+    cursor:pointer;
+}
+.doctor-container:hover{
+    transform: scale(1.01);
+}
+
+.top-container{
+    background-color: rgb(207, 210, 225);
+    margin-top: 50%;
+    width: 350px;
+    height: 150px;
+    /* border-radius: 20px; */
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+    margin-bottom: 0px;
+    align-items: center;
+}
+.text-container{
+    background-color: rgb(43, 44, 68);
+    box-shadow: 0 4px 8px 0 rgba(86, 86, 86, 0.2), 0 6px 20px rgba(113, 112, 112, 0.19);
+    width: 350px;
+    height: 100px;
+    text-align: center;
+    margin-right: 30px;
+    margin-top: -19.5px;
+}
+
+.scroll-button{
+    height: 50px;
+    width: 10px;
+    margin-right: 10px;
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+    margin-bottom: 5%;
+    font-weight: bold;
+    font-size: 20px;
+}
+.scroll-button:hover{
+    transform: scale(1.1);
+}
+
+.doctor-image{
+    display: block;
+    margin: auto;
+    height: 150px;
+}

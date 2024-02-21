@@ -26,9 +26,10 @@ export class Database{
     }
 
     async returnAllDoctors(){
-        const query = "SELECT * from Doctor;"
+        const query = "SELECT doctor_id, doctor_name, doctor_email from Doctor;"
         const [result] = await pool.query(query);
-        console.log(result);
+        console.log(result)
+        return result;
     }
 
     async insertToPatient(values){
@@ -85,7 +86,8 @@ export class Database{
 };
 
 // let db = new Database();
-// // db.returnAllDoctors();
+// db.insertToDoctor(['Oleksander Usyk', 'usyk@gmail.com', '388000622', 'tysonberunning']);
+// db.returnAllDoctors();
 // db.returnAllPatients();
 // db.verifyLogin(['sheryl@gmail.com', 'rimsha']);
 // const dob = new Date("2000-02-02").toISOString().slice(0, 10);
