@@ -69,3 +69,7 @@
 .right-column{
     height: 100%;
 }
+
+.active-button{
+    background-color: rgb(65, 65, 67) !important;
+}

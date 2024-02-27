@@ -2,8 +2,8 @@
   <div class = "app-container">
     <div class = "left-column">
       <div *ngIf = "loggedIn == false" class = "user-buttons">
-        <button class = "signup-button" (click)="onButtonClick('signup')">Sign up</button>
-        <button class = "login-button" (click)="onButtonClick('login')"> Login</button>
+        <button class = "signup-button" (click)="onLoginClick('signup')">Sign up</button>
+        <button class = "login-button" (click)="onLoginClick('login')"> Login</button>
       </div> 
       <div *ngIf = "loggedIn == true" class="row username">
         <img style = "margin-top: 4%; margin-right: 8%; margin-left: 4%;" height="50px" src="assets/home/user_image.png" alt="">
@@ -12,9 +12,9 @@
       <div style="padding: 1%;"><hr style="border: 0.2px solid grey;"></div>
       <div style="padding: 10%;"></div>
       <div class = "normal-buttons">
-        <button (click)="onButtonClick('')">Home</button>
-        <button (click)="onButtonClick('book-appointment')">Book an Appointment</button>
-        <button (click)="onButtonClick('appointments')">My Appointments</button>
+        <button (click)="onPageClick('', '')" [ngClass]="{'active-button': (selectedPage === '')}">Home</button>
+        <button (click)="onPageClick('book-appointment', 'book-appointment')" [ngClass]="{'active-button': (selectedPage === 'book-appointment')}">Book an Appointment</button>
+        <button (click)="onPageClick('appointments', 'my-appointments')" [ngClass]="{'active-button': (selectedPage === 'my-appointments')}">My Appointments</button>
         <button>Diagnosis</button>
         <button>My Medication</button>
         <button>Contact Us</button>

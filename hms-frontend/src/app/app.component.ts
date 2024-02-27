@@ -14,6 +14,7 @@ export class AppComponent {
   username! : string;
   showColumns: boolean = true;
   patientDetails! : PatientDetails;
+  selectedPage : string = '';
 
   constructor(private router: Router, private patientService : PatientDetailsService){
     this.router.events.subscribe(event => {
@@ -34,7 +35,12 @@ export class AppComponent {
     })
   }
 
-  onButtonClick(path : string){
+  onLoginClick(path : string){
+    this.router.navigateByUrl(path);
+  }
+
+  onPageClick(path : string, page : string){
+    this.selectedPage = page;
     this.router.navigateByUrl(path);
   }
 }

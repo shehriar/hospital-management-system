@@ -28,3 +28,46 @@ th, td{
 tr{
     margin-bottom: 10px;
 }
+
+.popup {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: block;
+}
+.popup-content {
+    background-color: rgb(46, 46, 56);
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888888;
+    width: 30%;
+    height: 200px;
+    font-weight: bolder;
+    text-align: center;
+}
+.popup-content button {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.popup-content .close-button{
+    background-color: #565555;
+}
+
+.popup-content .continue-button{
+    background-color: rgb(203, 29, 29);
+}
+
+.row{
+    display: flex;
+}

@@ -12,7 +12,9 @@ import { Appointment } from '../interfaces/appointment';
 export class MyAppointmentsComponent {
   patientDetails! : PatientDetails;
   isLoggedIn : boolean = true;
+  isPopupVisible : boolean = false;
   appointmentDetails : Appointment[] = [];
+  appointmentToDelete! : Appointment;
   appointmentTableHeaders = ['Date', 'Time', 'Doctor', ''];
   constructor(private patientService : PatientDetailsService, private appointmentService : AppointmentService){}
   ngOnInit(){
@@ -40,11 +42,21 @@ export class MyAppointmentsComponent {
     }
   }
 
-  deleteAppointment(appointment : Appointment){
-    let aptArray = [appointment.date, appointment.time, appointment.doctorName];
+  clickDelete(appointment : Appointment){
+    this.appointmentToDelete = appointment;
+    this.isPopupVisible = true;
+  }
+
+  closePopup(){
+    this.isPopupVisible = false;
+  }
+
+  deleteAppointment(){
+    let aptArray = [this.appointmentToDelete.date, this.appointmentToDelete.time, this.appointmentToDelete.doctorName];
     this.appointmentService.deleteAppointment(aptArray).subscribe(data => {
       this.appointmentDetails = [];
       this.populateAppointmentDetails();
     });
+    this.closePopup();
   }
 }

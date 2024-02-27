@@ -10,11 +10,27 @@
             <tr>
                 <td *ngFor="let header of appointmentTableHeaders">
                     <ng-container *ngIf="header === 'Date'">{{appointment.date}}</ng-container>
-                    <ng-container *ngIf="header === 'Time'">{{appointment.time}}</ng-container>
+                    <ng-container *ngIf="header === 'Time'">{{appointment.time}}(CST)</ng-container>
                     <ng-container *ngIf="header === 'Doctor'">Dr. {{appointment.doctorName}}</ng-container>
-                    <ng-container *ngIf="header === ''"><button class = "material-icons delete-button" (click)="deleteAppointment(appointment)">delete</button></ng-container>
+                    <ng-container *ngIf="header === ''"><button class = "material-icons delete-button" (click)="clickDelete(appointment)">delete</button></ng-container>
                 </td>
             </tr>
         </ng-container>
     </table>    
+</div>
+
+<div *ngIf = "isPopupVisible" class="popup">
+    <div class="popup-content" >
+        <h2 style="font-size: 16px;">Are you sure you want to delete appointment:</h2>
+        <p style="font-size: 20px;"> {{appointmentToDelete.date}}, {{appointmentToDelete.time}} <span style="font-size: 14px;">(CST)</span><br>
+            with Dr. {{appointmentToDelete.doctorName}}</p>
+        <div style="text-align: center;">
+
+        </div>
+        <div style="padding-bottom: 10px;"></div>
+        <div class = "row">
+            <button id="closePopup" class = "close-button" (click)="closePopup()">Close</button>
+            <button class = "continue-button" (click)="deleteAppointment()"> Delete </button>
+        </div>
+    </div>
 </div>
