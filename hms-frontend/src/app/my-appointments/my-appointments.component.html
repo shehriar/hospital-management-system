@@ -1,0 +1,20 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class = "main-container">
+    <table>
+        <tr>
+            <ng-container *ngFor="let header of appointmentTableHeaders">
+                <th>{{header}}</th>
+            </ng-container>
+        </tr>
+        <ng-container *ngFor="let appointment of appointmentDetails">
+            <tr>
+                <td *ngFor="let header of appointmentTableHeaders">
+                    <ng-container *ngIf="header === 'Date'">{{appointment.date}}</ng-container>
+                    <ng-container *ngIf="header === 'Time'">{{appointment.time}}</ng-container>
+                    <ng-container *ngIf="header === 'Doctor'">Dr. {{appointment.doctorName}}</ng-container>
+                    <ng-container *ngIf="header === ''"><button class = "material-icons delete-button" (click)="deleteAppointment(appointment)">delete</button></ng-container>
+                </td>
+            </tr>
+        </ng-container>
+    </table>    
+</div>

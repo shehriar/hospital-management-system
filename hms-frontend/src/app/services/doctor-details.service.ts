@@ -15,6 +15,11 @@ export class DoctorDetailsService {
     return this.http.get("http://localhost:3000/api/all-doctors");
   }
 
+  getAppointmentDateTimeFromDoctor(doctorID : any) : Observable<any>{
+    console.log("reached service");
+    return this.http.post("http://localhost:3000/api/appointment-date-time-from-doctor", [doctorID]);
+  }
+
   setDoctorDetails(doctor : DoctorDetails) {
     this.doctorDetailsSubject.next(doctor);
   }

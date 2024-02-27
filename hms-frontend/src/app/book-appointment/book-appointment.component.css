@@ -6,7 +6,7 @@
     width: 70em;
     margin-left: 1%;
     margin-right: 1%;
-    height: 90vh;
+    /* height: 90vh; */
     /* background-color: white; */
     scroll-behavior: smooth;
 }
@@ -22,13 +22,14 @@
 }
 
 .doctor-container{
-    cursor:pointer;
+    height: 300px
 }
 .doctor-container:hover{
     transform: scale(1.01);
 }
 
 .top-container{
+    cursor:pointer;
     background-color: rgb(207, 210, 225);
     margin-top: 50%;
     width: 350px;
@@ -39,6 +40,7 @@
     align-items: center;
 }
 .text-container{
+    cursor:pointer;
     background-color: rgb(43, 44, 68);
     box-shadow: 0 4px 8px 0 rgba(86, 86, 86, 0.2), 0 6px 20px rgba(113, 112, 112, 0.19);
     width: 350px;
@@ -48,14 +50,25 @@
     margin-top: -19.5px;
 }
 
+.top-active{
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+.text-active{
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
 .scroll-button{
-    height: 50px;
-    width: 10px;
+    height: 100px;
+    width: 50px;
     margin-right: 10px;
     background-color: transparent;
     border: 0px;
     cursor: pointer;
-    margin-bottom: 5%;
+    margin-top:10%;
     font-weight: bold;
     font-size: 20px;
 }
@@ -67,4 +80,70 @@
     display: block;
     margin: auto;
     height: 150px;
+}
+
+.date-select-container{
+    margin-left: 6%;
+}
+
+select{
+    background-color: transparent;
+    color: white;
+    border: 0px;
+    border-bottom: 1px solid white;
+}
+
+
+.time-buttons{
+    margin-top: 2%;
+    margin-right: 0.5%;
+}
+
+.time-buttons button{
+    width: 70px;
+    height: 30px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+
+
+.popup {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: block;
+}
+.popup-content {
+    background-color: rgb(46, 46, 56);
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888888;
+    width: 30%;
+    height: 200px;
+    font-weight: bolder;
+}
+.popup-content button {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.popup-content .close-button{
+    background-color: #565555;
+}
+
+.popup-content .continue-button{
+    background-color: green;
 }

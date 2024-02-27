@@ -24,7 +24,6 @@ export class PatientDetailsService {
   }
 
   setPatientDetails(patient : PatientDetails) {
-    console.log(patient);
     this.patientDetailsSubject.next(patient);
   }
 

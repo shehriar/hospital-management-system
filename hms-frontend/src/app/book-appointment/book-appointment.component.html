@@ -1,20 +1,71 @@
-<h2>SELECT A DOCTOR</h2>
-<div class="row main-container">
-    <button #slideLeft class = "scroll-button"><</button>
-    <div #scrollableContainer class = "scrollable-container">
-        <div #scrollRow class = "row scroll">
-            <div *ngFor = "let doctor of allDoctors">
-                <div class = "doctor-container">
-                <div class = "top-container">
-                    <img class = "doctor-image" src="assets/doctor.png" alt="">
-                </div>
-                <div class = "text-container">
-                    <h2>Dr. {{doctor.name}}</h2>
-                    <p>{{doctor.email}}</p>
-                </div>
+<div *ngIf="loggedIn">
+    <div class="row main-container">
+        <button #slideLeft class = "scroll-button"><</button>
+        <div #scrollableContainer class = "scrollable-container">
+            <div #scrollRow class = "row scroll">
+                <div style="padding-left: 10px;"></div>
+                <div *ngFor = "let doctor of allDoctors">
+                    <div class = "doctor-container">
+                        <div class = "top-container" [ngClass]="{'top-active': (doctor.id === selectedDoctorID)}" (click)="clickDoctor(doctor.id)">
+                            <img class = "doctor-image" src="assets/doctor.png" alt="">
+                        </div>
+                        <div class = "text-container" [ngClass]="{'text-active': (doctor.id === selectedDoctorID)}" (click)="clickDoctor(doctor.id)">
+                            <h2>Dr. {{doctor.name}}</h2>
+                            <p>{{doctor.email}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <button #slideRight class = "scroll-button">></button>
     </div>
-    <button #slideRight class = "scroll-button">></button>
+
+    <div *ngIf="doctorSelected" class = "date-select-container">
+        <select #dateSelected (change)="updateTimes($event)">
+            <option value = "">----</option>
+            <option *ngFor = "let available of availability; let i = index" [value]="i">
+                {{available.date}}, {{available.dayOfWeek}}
+            </option>
+        </select>
+
+        <div class = "row">
+            <div class = "time-buttons" *ngFor="let time of availableTimes">
+                <button id = "timeButton" (click)="timeButtonClicked(time)">{{time}}</button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf = "isPopupVisible" class="popup">
+        <div class="popup-content">
+            <h2 style="font-size: 16px;">Appointment Confirmation:</h2>
+            <div style="text-align: center;">
+                <p style="font-size: 20px;"> {{dayOfWeekSelected}}, {{dateSelected}}</p>
+                <p style="font-size: 20px;"> {{timeSelected}} <span style="font-size: 14px;">(CST)</span></p>
+            </div>
+            <div style="padding-bottom: 10px;"></div>
+            <div class = "row">
+                <button id="closePopup" class = "close-button" (click)="closePopup()">Close</button>
+                <button class = "continue-button" (click)="continueButtonClicked()"> Continue </button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf = "confirmPopupVisible" class="popup">
+        <div class="popup-content" style="text-align: center;">
+            <div style="padding-top: 30px;"></div>
+            <h2 style="color: rgb(67, 205, 67);">Appointment Confirmed!</h2>
+            <button class = "close-button" (click)="closePopup()">Close</button>
+        </div>
+    </div>
+    <!-- <div class = "row"  *ngFor = "let available of availability">
+        <p>{{available.date}}, {{available.dayOfWeek}}</p>
+        <div *ngFor = "let time of available.time">
+            <button>{{time}}</button>
+        </div>
+    </div> -->
+
+</div>
+
+<div *ngIf = "!loggedIn" style="text-align: center; margin-top: 25%;">
+    Please log in to view this page
 </div>

@@ -10,9 +10,9 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE,
 }).promise();
 
-// const query = "ALTER TABLE Appointment ADD billing_cost INT;"
-// const [result] = await pool.query(query);
-// // console.log(result);
+const query = "DELETE FROM Appointment WHERE appointment_time = '9:30'"
+const [result] = await pool.query(query);
+// console.log(result);
 
 export class Database{
     async insertToDoctor(values){
@@ -28,7 +28,7 @@ export class Database{
     async returnAllDoctors(){
         const query = "SELECT doctor_id, doctor_name, doctor_email from Doctor;"
         const [result] = await pool.query(query);
-        console.log(result)
+        // console.log(result)
         return result;
     }
 
@@ -76,16 +76,44 @@ export class Database{
 
     async insertToAppointment(values){
         try{
-            const query = "INSERT INTO Appointment(appointent_date, doctor_id, patient_id, billing_cost) VALUES (?, ?, ?, ?)";
+            const query = "INSERT INTO Appointment(appointment_date, doctor_id, patient_id, billing_cost, appointment_time) VALUES (?, ?, ?, ?, ?)";
             await pool.query(query, values);
         }
         catch(err){
             console.log("Error inserting to Appointment table: ", err);
         }
     }
+
+    async deleteAppointment(values){
+        const query = "DELETE FROM Appointment WHERE appointment_date = ? AND appointment_time = ? AND doctor_id = (SELECT doctor_id FROM Doctor WHERE doctor_name = ?);"
+        await pool.query(query, values);
+    }   
+
+    async returnAllAppointments(value){
+        // const query = "DELETE FROM Patient WHERE patient_email = 'rimsharizvi@gmail.com';"
+        const query = "SELECT appointment.appointment_date, appointment.appointment_time, Doctor.doctor_name FROM Appointment, Doctor WHERE Appointment.patient_id = ? AND doctor.doctor_id = appointment.doctor_id ORDER BY appointment.appointment_date, appointment.appointment_time, doctor.doctor_name ASC;"
+        const [result] = await pool.query(query, value);
+        return result;
+        // console.log(result);
+    }
+
+    async getAppointmentDateTimeFromDoctor(value){
+        try{
+            const query = "SELECT appointment_date, appointment_time FROM Appointment where doctor_id = ?";
+            const [result] = await pool.query(query, value);
+            // console.log(result);
+            return result;
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
 };
 
 // let db = new Database();
+// db.getAppointmentDateTimeFromDoctor(1);
+// db.returnAllAppointments();
+// db.insertToAppointment(["2024-02-28", 1, 8, 200, "11:30"]);
 // db.insertToDoctor(['Oleksander Usyk', 'usyk@gmail.com', '388000622', 'tysonberunning']);
 // db.returnAllDoctors();
 // db.returnAllPatients();

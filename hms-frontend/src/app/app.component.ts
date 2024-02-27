@@ -28,7 +28,6 @@ export class AppComponent {
     this.patientService.patientDetails.subscribe(patient => {
       if(patient){
         this.patientDetails = patient;
-        console.log(patient);
         this.loggedIn = true;
         this.username = this.patientDetails.name.split(" ")[0];
       }

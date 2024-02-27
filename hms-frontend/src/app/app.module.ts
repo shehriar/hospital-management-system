@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { PatientDetailsService } from './services/patient-details.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     BookAppointmentComponent,
     LoginComponent,
     SignupComponent,
+    MyAppointmentsComponent,
   ],
   imports: [
     BrowserModule,
