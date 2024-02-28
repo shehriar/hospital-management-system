@@ -11,7 +11,7 @@ import { Appointment } from '../interfaces/appointment';
 })
 export class MyAppointmentsComponent {
   patientDetails! : PatientDetails;
-  isLoggedIn : boolean = true;
+  isLoggedIn : boolean = false;
   isPopupVisible : boolean = false;
   appointmentDetails : Appointment[] = [];
   appointmentToDelete! : Appointment;

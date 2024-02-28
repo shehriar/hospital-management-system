@@ -1,0 +1,21 @@
+<div class = "main-container" *ngIf = "isLoggedIn">
+    <table>
+        <tr>
+            <ng-container *ngFor="let header of tableHeaders">
+                <th>{{header}}</th>
+            </ng-container>
+        </tr>
+        <ng-container *ngFor="let diagnosis of patientDiagnoses">
+            <tr>
+                <td *ngFor="let header of tableHeaders">
+                    <ng-container *ngIf="header === 'Diagnosis'">{{diagnosis.name}}</ng-container>
+                    <ng-container *ngIf="header === 'Date Diagnosed'">{{diagnosis.date}}</ng-container>
+                </td>
+            </tr>
+        </ng-container>
+    </table>
+</div>
+
+<div *ngIf = "!isLoggedIn" style="text-align: center; margin-top: 25%;">
+    Please log in to view this page
+</div>

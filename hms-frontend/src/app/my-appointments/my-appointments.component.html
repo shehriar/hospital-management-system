@@ -1,5 +1,5 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<div class = "main-container">
+<div *ngIf = "isLoggedIn" class = "main-container">
     <table>
         <tr>
             <ng-container *ngFor="let header of appointmentTableHeaders">
@@ -33,4 +33,8 @@
             <button class = "continue-button" (click)="deleteAppointment()"> Delete </button>
         </div>
     </div>
+</div>
+
+<div *ngIf = "!isLoggedIn" style="text-align: center; margin-top: 25%;">
+    Please log in to view this page
 </div>

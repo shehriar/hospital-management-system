@@ -15,8 +15,8 @@
         <button (click)="onPageClick('', '')" [ngClass]="{'active-button': (selectedPage === '')}">Home</button>
         <button (click)="onPageClick('book-appointment', 'book-appointment')" [ngClass]="{'active-button': (selectedPage === 'book-appointment')}">Book an Appointment</button>
         <button (click)="onPageClick('appointments', 'my-appointments')" [ngClass]="{'active-button': (selectedPage === 'my-appointments')}">My Appointments</button>
-        <button>Diagnosis</button>
-        <button>My Medication</button>
+        <button (click)="onPageClick('diagnoses', 'diagnoses')" [ngClass]="{'active-button': (selectedPage === 'diagnoses')}">My Diagnoses</button>
+        <button (click)="onPageClick('medication', 'medication')" [ngClass]="{'active-button': (selectedPage === 'medication')}">My Medication</button>
         <button>Contact Us</button>
       </div>
     </div>

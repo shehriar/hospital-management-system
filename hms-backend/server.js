@@ -68,6 +68,20 @@ app.post('/api/get-patient-appointments', (req, res) => {
   })
 })
 
+app.post('/api/get-patient-diagnoses', (req, res) =>{
+  const patientId = req.body;
+  db.returnAllPatientDiagnosis(patientId).then(function(result){
+    res.status(200).send(result);
+  })
+})
+
+app.post('/api/get-patient-medication', (req, res) =>{
+  const patientId = req.body;
+  db.returnAllPatientMedication(patientId).then(function(result){
+    res.status(200).send(result);
+  })
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:3000`);
 });

@@ -5,13 +5,17 @@ import { BookAppointmentComponent } from './book-appointment/book-appointment.co
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
+import { DiagnosesComponent } from './diagnoses/diagnoses.component';
+import { MedicationComponent } from './medication/medication.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'book-appointment', component: BookAppointmentComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'appointments', component: MyAppointmentsComponent}
+  {path: 'appointments', component: MyAppointmentsComponent},
+  {path: 'diagnoses', component: DiagnosesComponent},
+  {path: 'medication', component: MedicationComponent}
 ];
 
 @NgModule({

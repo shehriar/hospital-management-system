@@ -10,8 +10,8 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE,
 }).promise();
 
-const query = "DELETE FROM Appointment WHERE appointment_time = '9:30'"
-const [result] = await pool.query(query);
+// const query = "DELETE FROM Appointment WHERE appointment_time = '9:30'"
+// const [result] = await pool.query(query);
 // console.log(result);
 
 export class Database{
@@ -108,9 +108,62 @@ export class Database{
             console.log(err);
         }
     }
+
+    async insertToPatientDiagnosis(values){
+        const query = "INSERT INTO PatientDiagnosis(diagnosis_id, patient_id, date) VALUES (?, ?, ?)";
+        await pool.query(query, values);
+    }
+    async returnAllPatientDiagnosis(values){
+        const query = "SELECT Diagnosis.diagnosis_name, PatientDiagnosis.date FROM Diagnosis, PatientDiagnosis WHERE diagnosis.diagnosis_id = (SELECT Diagnosis_id FROM PatientDiagnosis where patient_id = ?) AND PatientDiagnosis.patient_id = ?";
+        const [result] = await pool.query(query, values);
+        return result;
+    }
+
+    async insertToPatientMedication(values){
+        const query = "INSERT INTO PatientMedication(patient_id, medication_id, dosage, dateRange) VALUES (?, ?, ?, ?)";
+        await pool.query(query, values);
+    }
+    async returnAllPatientMedication(values){
+        const query = "SELECT Medication.medication_name, PatientMedication.dosage, PatientMedication.dateRange FROM Medication, PatientMedication WHERE Medication.medication_id = (SELECT Medication_id FROM PatientMedication where patient_id = ?) AND PatientMedication.patient_id = ?";
+        const [result] = await pool.query(query, values);
+        return result;
+        // console.log(result);
+    }
+
+    async insertToDiagnosis(value){
+        const query = "INSERT INTO Diagnosis(diagnosis_name) VALUES (?)";
+        await pool.query(query, value);
+    }
+
+    async returnAllDiagnoses(){
+        const query = "SELECT * FROM Diagnosis;"
+        const [result] = await pool.query(query);
+        console.log(result);
+    }
+
+    async insertToMedication(value){
+        const query = "INSERT INTO Medication(medication_name) VALUES (?)";
+        await pool.query(query, value);
+    }
+
+    async returnAllMedication(){
+        const query = "SELECT * FROM Medication;"
+        const [result] = await pool.query(query);
+        console.log(result);
+    }
 };
 
 // let db = new Database();
+// db.insertToPatientMedication([8, 9, 20, "2024-02-28 - 2024-03-07"]);
+// db.returnAllPatientMedication();
+// db.insertToPatientDiagnosis([6, 23, "2024-02-26"]);
+// db.returnAllPatientDiagnosis(8);
+
+// for(let i = 0; i<medications.length; i++){
+//     db.insertToMedication(medications[i])
+// }
+// db.returnAllMedication()
+// db.returnAllDiagnoses();
 // db.getAppointmentDateTimeFromDoctor(1);
 // db.returnAllAppointments();
 // db.insertToAppointment(["2024-02-28", 1, 8, 200, "11:30"]);
