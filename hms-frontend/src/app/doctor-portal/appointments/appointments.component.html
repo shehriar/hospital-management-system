@@ -1,1 +1,30 @@
-<p>appointments works!</p>
+<link href='https://unpkg.com/css.gg@2.0.0/icons/css/clipboard.css' rel='stylesheet'>
+<div class = "page-container">
+    <div class = "top-buttons">
+        <button (click)="navigatePage('doctor')">Home</button>
+        <button>Contact Us</button>
+    </div>
+    <div *ngIf = "isLoggedIn" class = "main-container">
+        <table>
+            <tr>
+                <ng-container *ngFor="let header of appointmentTableHeaders">
+                    <th>{{header}}</th>
+                </ng-container>
+            </tr>
+            <ng-container *ngFor="let appointment of appointments">
+                <tr>
+                    <td *ngFor="let header of appointmentTableHeaders">
+                        <ng-container *ngIf="header === 'Date'">{{appointment.date}}</ng-container>
+                        <ng-container *ngIf="header === 'Time'">{{appointment.time}}(CST)</ng-container>
+                        <ng-container *ngIf="header === 'Patient'">{{appointment.patient_name}}</ng-container>
+                        <ng-container *ngIf="header === ''"><button class = "patient-button" (click)="clickOnPatient('', [{id : appointment.patient_id, name : appointment.patient_name, email : appointment.patient_email, phone : appointment.patient_phone, dob : appointment.patient_dob}])"><i class="gg-clipboard"></i></button></ng-container>
+                    </td>
+                </tr>
+            </ng-container>
+        </table>
+    </div>
+
+    <div *ngIf = "!isLoggedIn" style="text-align: center; margin-top: 25%;">
+        Please log in to view this page
+    </div>
+</div>

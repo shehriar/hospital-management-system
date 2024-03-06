@@ -69,8 +69,14 @@
     margin-top: 0.5%;
     width: 130px;
     height: 40px;
-    color: black;
+    color: rgb(255, 255, 255);
     font-weight: bold;
     border-radius: 0px;
-    background-color: white;
+    background-color: rgb(56, 56, 80);
+}
+
+.button-div-image{
+    background-repeat: no-repeat, repeat;
+    background-position: center;
+    background-size: contain;
 }
