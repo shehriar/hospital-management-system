@@ -1,9 +1,62 @@
+.main-container button{
+    width:100px;
+    height: 35px;
+    font-weight: bold;
+    border-radius: 20px;
+    border: 0px;
+    margin-right: 10px;
+    cursor: pointer;
+    margin-top: 1%;
+    margin-left: 1;
+}
+
+.signup-button{
+    /* background-color: rgb(7, 153, 7); */
+    background-color: rgb(96, 122, 218);
+}
+
+.login-button{
+    /* background-color: grey; */
+    background-color: rgb(247, 126, 33);
+}
+
 .home-container{
     height: 60vh;
     /* background-color: grey; */
-    margin-top: 5%;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
     display: grid;
     grid-template-rows: 60vh 25vh
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px
+}
+
+.button-div{
+    background-color: rgb(79, 79, 91);
+    cursor: pointer;
+    text-align: center;
+}
+.button-div:hover{
+    transform: scale(1.02);
+}
+
+.button-div-image{
+    background-repeat: no-repeat, repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 .logo-row{
@@ -12,7 +65,7 @@
 }
 
 .logo-row h1{
-    font-size: 100px;
+    font-size: 50px;
     font-weight: lighter;
     /* font-family: 'Courier New', Courier, monospace; */
     font-family:Georgia, 'Times New Roman', Times, serif;
@@ -23,7 +76,7 @@
 }
 
 .logo-row h2{
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
     font-family:'Times New Roman', Times, serif;
     color: rgb(197, 223, 243);

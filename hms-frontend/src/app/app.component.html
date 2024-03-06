@@ -12,11 +12,11 @@
       <div style="padding: 1%;"><hr style="border: 0.2px solid grey;"></div>
       <div style="padding: 10%;"></div>
       <div class = "normal-buttons">
-        <button (click)="onPageClick('', '')" [ngClass]="{'active-button': (selectedPage === '')}">Home</button>
-        <button (click)="onPageClick('book-appointment', 'book-appointment')" [ngClass]="{'active-button': (selectedPage === 'book-appointment')}">Book an Appointment</button>
-        <button (click)="onPageClick('appointments', 'my-appointments')" [ngClass]="{'active-button': (selectedPage === 'my-appointments')}">My Appointments</button>
-        <button (click)="onPageClick('diagnoses', 'diagnoses')" [ngClass]="{'active-button': (selectedPage === 'diagnoses')}">My Diagnoses</button>
-        <button (click)="onPageClick('medication', 'medication')" [ngClass]="{'active-button': (selectedPage === 'medication')}">My Medication</button>
+        <button (click)="onPageClick('')" [ngClass]="{'active-button': (selectedPage === '/')}">Home</button>
+        <button (click)="onPageClick('book-appointment')" [ngClass]="{'active-button': (selectedPage === '/book-appointment')}">Book an Appointment</button>
+        <button (click)="onPageClick('appointments')" [ngClass]="{'active-button': (selectedPage === '/appointments')}">My Appointments</button>
+        <button (click)="onPageClick('diagnoses')" [ngClass]="{'active-button': (selectedPage === '/diagnoses')}">My Diagnoses</button>
+        <button (click)="onPageClick('medication')" [ngClass]="{'active-button': (selectedPage === '/medication')}">My Medication</button>
         <button>Contact Us</button>
       </div>
     </div>

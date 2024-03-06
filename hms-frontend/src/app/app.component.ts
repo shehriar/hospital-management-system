@@ -19,7 +19,8 @@ export class AppComponent {
   constructor(private router: Router, private patientService : PatientDetailsService){
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.showColumns = !(event.url === '/login' || event.url === '/signup');
+        this.selectedPage = event.url;
+        this.showColumns = !(this.selectedPage === '/login' || this.selectedPage === '/signup' || this.selectedPage == '/');
       }
     });
     this.ngOnInit();
@@ -39,8 +40,7 @@ export class AppComponent {
     this.router.navigateByUrl(path);
   }
 
-  onPageClick(path : string, page : string){
-    this.selectedPage = page;
+  onPageClick(path : string){
     this.router.navigateByUrl(path);
   }
 }

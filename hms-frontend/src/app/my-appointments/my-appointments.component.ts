@@ -16,6 +16,7 @@ export class MyAppointmentsComponent {
   appointmentDetails : Appointment[] = [];
   appointmentToDelete! : Appointment;
   appointmentTableHeaders = ['Date', 'Time', 'Doctor', ''];
+  currDate! : string;
   constructor(private patientService : PatientDetailsService, private appointmentService : AppointmentService){}
   ngOnInit(){
     this.patientService.patientDetails.subscribe(patient => {
@@ -29,8 +30,14 @@ export class MyAppointmentsComponent {
 
   populateAppointmentDetails(){
     if(this.isLoggedIn){
+      this.currDate = (new Date()).toISOString().split('T')[0]
       this.appointmentService.getPatientAppointments(this.patientDetails.id).subscribe(data => {
-        this.appointmentDetails = data.map((item:any) => {
+        const filteredAppointments = data.filter((item: any) => {
+          if(item.appointment_date > this.currDate){
+            return item;
+          }
+        });
+        this.appointmentDetails = filteredAppointments.map((item:any) => {
           return{
             ...item,
             date: item.appointment_date,
