@@ -41,7 +41,7 @@ export class Database{
     async returnAllDoctors(){
         const query = "SELECT doctor_id, doctor_name, doctor_email from Doctor;"
         const [result] = await pool.query(query);
-        // console.log(result)
+        console.log(result)
         return result;
     }
 
@@ -55,6 +55,12 @@ export class Database{
         catch (err){
             console.log(err);
         }
+    }
+
+    async getDoctorAppointments(value){
+        const query = "SELECT Appointment.appointment_id, patient.patient_id, patient.patient_name, patient.patient_email, patient.phone, patient.dob, appointment.appointment_date, appointment.appointment_time FROM Appointment, Patient WHERE appointment.doctor_id = ? AND Appointment.patient_id = Patient.patient_id ORDER BY Appointment.appointment_date, Appointment.appointment_time ASC;";
+        const [result] = await pool.query(query, value);
+        return result;
     }
 
     async insertToPatient(values){
@@ -148,6 +154,7 @@ export class Database{
         const query = "INSERT INTO PatientMedication(patient_id, medication_id, dosage, dateRange) VALUES (?, ?, ?, ?)";
         await pool.query(query, values);
     }
+
     async returnAllPatientMedication(values){
         const query = "SELECT Medication.medication_name, PatientMedication.dosage, PatientMedication.dateRange FROM Medication, PatientMedication WHERE Medication.medication_id = (SELECT Medication_id FROM PatientMedication where patient_id = ?) AND PatientMedication.patient_id = ?";
         const [result] = await pool.query(query, values);
@@ -157,13 +164,14 @@ export class Database{
 
     async insertToDiagnosis(value){
         const query = "INSERT INTO Diagnosis(diagnosis_name) VALUES (?)";
-        await pool.query(query, value);
+        [result] = await pool.query(query, value);
+        
     }
 
     async returnAllDiagnoses(){
         const query = "SELECT * FROM Diagnosis;"
         const [result] = await pool.query(query);
-        console.log(result);
+        return result;
     }
 
     async insertToMedication(value){
@@ -174,11 +182,12 @@ export class Database{
     async returnAllMedication(){
         const query = "SELECT * FROM Medication;"
         const [result] = await pool.query(query);
-        console.log(result);
+        return result;
     }
 };
 
 // let db = new Database();
+// db.getDoctorAppointments(1);
 // db.insertToPatientMedication([8, 9, 20, "2024-02-28 - 2024-03-07"]);
 // db.returnAllPatientMedication();
 // db.insertToPatientDiagnosis([6, 23, "2024-02-26"]);

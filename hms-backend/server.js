@@ -107,6 +107,26 @@ app.post('/api/verify-doctor-login', (req, res) => {
   });
 });
 
+app.post('/api/get-doctor-appointments', (req, res) =>{
+  const doctorId = req.body[0];
+  console.log(doctorId);
+  db.getDoctorAppointments(doctorId).then(function(result){
+    res.status(200).send(result);
+  })
+})
+
+app.get('/api/get-all-diagnoses', (req, res) => {
+  db.returnAllDiagnoses().then(function(result){
+    res.status(200).send(result);
+  })
+})
+
+app.get('/api/get-all-medication', (req, res) => {
+  db.returnAllMedication().then(function(result){
+    res.status(200).send(result);
+  })
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:3000`);
 });

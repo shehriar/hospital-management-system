@@ -17,7 +17,7 @@
                         <ng-container *ngIf="header === 'Date'">{{appointment.date}}</ng-container>
                         <ng-container *ngIf="header === 'Time'">{{appointment.time}}(CST)</ng-container>
                         <ng-container *ngIf="header === 'Patient'">{{appointment.patient_name}}</ng-container>
-                        <ng-container *ngIf="header === ''"><button class = "patient-button" (click)="clickOnPatient('', [{id : appointment.patient_id, name : appointment.patient_name, email : appointment.patient_email, phone : appointment.patient_phone, dob : appointment.patient_dob}])"><i class="gg-clipboard"></i></button></ng-container>
+                        <ng-container *ngIf="header === ''"><button class = "patient-button" (click)="clickOnPatient('doctor/patient-info', [{id : appointment.patient_id, name : appointment.patient_name, email : appointment.patient_email, phone : appointment.patient_phone, dob : appointment.patient_dob}])"><i class="gg-clipboard"></i></button></ng-container>
                     </td>
                 </tr>
             </ng-container>

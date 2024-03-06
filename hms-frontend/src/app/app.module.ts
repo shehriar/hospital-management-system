@@ -16,6 +16,7 @@ import { DoctorLoginComponent } from './doctor-portal/doctor-login/doctor-login.
 import { DoctorSignupComponent } from './doctor-portal/doctor-signup/doctor-signup.component';
 import { DoctorHomeComponent } from './doctor-portal/home/home.component';
 import { AppointmentsComponent } from './doctor-portal/appointments/appointments.component';
+import { PatientInformationComponent } from './doctor-portal/patient-information/patient-information.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AppointmentsComponent } from './doctor-portal/appointments/appointments
     DoctorLoginComponent,
     DoctorSignupComponent,
     AppointmentsComponent,
+    PatientInformationComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import { DoctorDetailsService } from '../services/doctor-details.service';
 import { AppointmentDetails } from '../interfaces/appointment';
 import { AppointmentService } from '../services/appointment.service';
 import { Router } from '@angular/router';
+import { PatientDetails } from '../interfaces/patient-details';
 
 @Component({
   selector: 'app-appointments',
@@ -15,6 +16,7 @@ export class AppointmentsComponent {
   isLoggedIn : boolean = false;
   appointments : AppointmentDetails[] = [];
   currDate! : string;
+  currPatient! : PatientDetails;
   appointmentTableHeaders = ['Date', 'Time', 'Patient', ''];
   constructor(private doctorService : DoctorDetailsService, private appointmentService : AppointmentService, private router : Router){}
 
@@ -55,8 +57,17 @@ export class AppointmentsComponent {
   }
 
   clickOnPatient(path : string, patient : any){
+    this.currPatient = {
+      id: patient[0].id,
+      name: patient[0].name,
+      email: patient[0].email,
+      phone: patient[0].phone,
+      dob: patient[0].dob
+    };
+    this.appointmentService.setPatientDetails(this.currPatient);
     this.router.navigateByUrl(path);
   }
+
   navigatePage(path : string){
     this.router.navigateByUrl(path);
   }

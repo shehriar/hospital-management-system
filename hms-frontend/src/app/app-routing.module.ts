@@ -11,6 +11,7 @@ import { DoctorHomeComponent } from './doctor-portal/home/home.component';
 import { DoctorLoginComponent } from './doctor-portal/doctor-login/doctor-login.component';
 import { DoctorSignupComponent } from './doctor-portal/doctor-signup/doctor-signup.component';
 import { AppointmentsComponent } from './doctor-portal/appointments/appointments.component';
+import { PatientInformationComponent } from './doctor-portal/patient-information/patient-information.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'doctor', component: DoctorHomeComponent},
   {path: 'doctor/login', component: DoctorLoginComponent},
   {path: 'doctor/signup', component: DoctorSignupComponent},
-  {path: 'doctor/appointments', component: AppointmentsComponent}
+  {path: 'doctor/appointments', component: AppointmentsComponent},
+  {path: 'doctor/patient-info', component: PatientInformationComponent}
 ];
 
 @NgModule({

@@ -14,7 +14,7 @@ export class AppComponent {
   username! : string;
   showColumns: boolean = true;
   patientDetails! : PatientDetails;
-  pagesForNoColumns = ['/login', '/signup', '/', '/doctor', '/doctor/login', '/doctor/signup', '/doctor/appointments'];
+  pagesForNoColumns = ['/login', '/signup', '/', '/doctor', '/doctor/login', '/doctor/signup', '/doctor/appointments', '/doctor/patient-info'];
   selectedPage : string = '';
 
   constructor(private router: Router, private patientService : PatientDetailsService){
