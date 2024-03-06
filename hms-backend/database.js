@@ -19,9 +19,22 @@ export class Database{
         try{
             const query = "INSERT INTO Doctor(doctor_name, doctor_email, phone, doctor_password) VALUES (?, ?, ?, ?)";
             await pool.query(query, values);
+            return true;
         }
         catch(err){
-            console.log("Error inserting to Doctor table: ", err);
+            return false;
+        }
+    }
+
+    async returnDoctorID(value){
+        try{
+            // console.log([value]);
+            const query = "SELECT doctor_id FROM Doctor WHERE doctor_email = ?;"
+            const [result] = await pool.query(query, [value]);
+            return result[0];
+        }
+        catch(err){
+            console.log(err);
         }
     }
 
@@ -30,6 +43,18 @@ export class Database{
         const [result] = await pool.query(query);
         // console.log(result)
         return result;
+    }
+
+    async verifyDoctorLogin(values){
+        try{
+            const query = "SELECT * FROM Doctor WHERE doctor_email = ? AND doctor_password = ?;"
+            const [queryResult] = await pool.query(query, values);
+            // const result = queryResult[0]['count(*)'];
+            return queryResult;
+        } 
+        catch (err){
+            console.log(err);
+        }
     }
 
     async insertToPatient(values){
@@ -167,7 +192,7 @@ export class Database{
 // db.getAppointmentDateTimeFromDoctor(1);
 // db.returnAllAppointments();
 // db.insertToAppointment(["2024-02-28", 1, 8, 200, "11:30"]);
-// db.insertToDoctor(['Oleksander Usyk', 'usyk@gmail.com', '388000622', 'tysonberunning']);
+// db.insertToDoctor(['Sarthak Hans', 'sarthu@gmail.com', '388044600', 'sarthu']);
 // db.returnAllDoctors();
 // db.returnAllPatients();
 // db.verifyLogin(['sheryl@gmail.com', 'rimsha']);

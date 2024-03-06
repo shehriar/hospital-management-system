@@ -1,6 +1,9 @@
 <div *ngIf= "!loggedIn" class="main-container">
-    <button class="login-button" (click)="onButtonClick('login')">Login</button>
-    <button class="signup-button" (click)="onButtonClick('signup')">Signup</button>
+    <div class = "user-buttons">
+        <button class="login-button" (click)="onButtonClick('login')">Login</button>
+        <button class="signup-button" (click)="onButtonClick('signup')">Signup</button>
+    </div>
+    <button class = "doctor-portal-button" (click)="onButtonClick('doctor')"> Doctor Portal</button>
 </div>
 <div class = "home-container">
     <div class = "buttons-row">

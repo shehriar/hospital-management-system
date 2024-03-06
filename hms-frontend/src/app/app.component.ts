@@ -14,13 +14,14 @@ export class AppComponent {
   username! : string;
   showColumns: boolean = true;
   patientDetails! : PatientDetails;
+  pagesForNoColumns = ['/login', '/signup', '/', '/doctor', '/doctor/login', '/doctor/signup'];
   selectedPage : string = '';
 
   constructor(private router: Router, private patientService : PatientDetailsService){
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.selectedPage = event.url;
-        this.showColumns = !(this.selectedPage === '/login' || this.selectedPage === '/signup' || this.selectedPage == '/');
+        this.showColumns = !this.pagesForNoColumns.includes(this.selectedPage);
       }
     });
     this.ngOnInit();

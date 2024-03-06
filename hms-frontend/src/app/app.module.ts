@@ -12,6 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { MyAppointmentsComponent } from './patient-portal/my-appointments/my-appointments.component';
 import { DiagnosesComponent } from './patient-portal/diagnoses/diagnoses.component';
 import { MedicationComponent } from './patient-portal/medication/medication.component';
+import { DoctorLoginComponent } from './doctor-portal/doctor-login/doctor-login.component';
+import { DoctorSignupComponent } from './doctor-portal/doctor-signup/doctor-signup.component';
+import { DoctorHomeComponent } from './doctor-portal/home/home.component';
+import { AppointmentsComponent } from './doctor-portal/appointments/appointments.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,10 @@ import { MedicationComponent } from './patient-portal/medication/medication.comp
     MyAppointmentsComponent,
     DiagnosesComponent,
     MedicationComponent,
+    DoctorHomeComponent,
+    DoctorLoginComponent,
+    DoctorSignupComponent,
+    AppointmentsComponent,
   ],
   imports: [
     BrowserModule,

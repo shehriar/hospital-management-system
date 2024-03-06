@@ -82,6 +82,31 @@ app.post('/api/get-patient-medication', (req, res) =>{
   })
 })
 
+app.post('/api/doctor-signup', (req, res) => {
+  const doctorDetailsArray = [req.body['name'], req.body['email'], req.body['phone'], req.body['password']];
+  db.insertToDoctor(doctorDetailsArray).then(function(result){
+    res.status(200).send(result);
+  })
+})
+
+app.post('/api/get-doctor-id', (req, res) => {
+  const email = req.body[0];
+  db.returnDoctorID(email).then(function(result){
+    res.status(200).send(result);
+  })
+})
+
+app.post('/api/verify-doctor-login', (req, res) => {
+  const loginDetails = req.body;
+  db.verifyDoctorLogin(loginDetails).then(function(result){
+    const loginVerified = result;
+    res.status(200).send(loginVerified);
+  }).catch((error) => {
+    console.error("Error verifying doctor login:", error);
+    res.status(500).send({error: "Internal server error"});
+  });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:3000`);
 });
