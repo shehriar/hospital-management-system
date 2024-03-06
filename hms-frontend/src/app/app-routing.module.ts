@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { BookAppointmentComponent } from './book-appointment/book-appointment.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
-import { DiagnosesComponent } from './diagnoses/diagnoses.component';
-import { MedicationComponent } from './medication/medication.component';
+import { HomeComponent } from './patient-portal/home/home.component';
+import { BookAppointmentComponent } from './patient-portal/book-appointment/book-appointment.component';
+import { LoginComponent } from './patient-portal/login/login.component';
+import { SignupComponent } from './patient-portal/signup/signup.component';
+import { MyAppointmentsComponent } from './patient-portal/my-appointments/my-appointments.component';
+import { DiagnosesComponent } from './patient-portal/diagnoses/diagnoses.component';
+import { MedicationComponent } from './patient-portal/medication/medication.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},

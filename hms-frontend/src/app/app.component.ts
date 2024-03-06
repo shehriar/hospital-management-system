@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { PatientDetails } from './interfaces/patient-details';
-import { PatientDetailsService } from './services/patient-details.service';
+import { PatientDetails } from './patient-portal/interfaces/patient-details';
+import { PatientDetailsService } from './patient-portal/services/patient-details.service';
 
 @Component({
   selector: 'app-root',

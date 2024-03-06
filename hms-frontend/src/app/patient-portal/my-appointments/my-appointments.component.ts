@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { PatientDetails } from 'src/app/interfaces/patient-details';
-import { PatientDetailsService } from 'src/app/services/patient-details.service';
+import { PatientDetails } from '../interfaces/patient-details';
+import { PatientDetailsService } from '../services/patient-details.service';
 import { AppointmentService } from '../services/appointment.service';
 import { Appointment } from '../interfaces/appointment';
 
