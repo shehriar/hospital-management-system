@@ -20,6 +20,7 @@ export class AppointmentService {
   }
 
   getAllDiagnoses() : Observable<any>{
+    // console.log(this.http.get('http://localhost:3000/api/get-all-diagnoses'));
     return this.http.get('http://localhost:3000/api/get-all-diagnoses')
   }
 

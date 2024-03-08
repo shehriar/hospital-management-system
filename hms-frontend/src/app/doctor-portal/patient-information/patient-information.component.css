@@ -7,4 +7,43 @@
     background-color: rgb(255, 255, 255);
     z-index: -1; /* Ensure the container is behind other content */
     color: black;
+    grid-template-columns: 2fr 2fr;
+}
+
+.main-container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    height: 90%;
+    margin: 5%;
+    width: 90%;
+}
+
+.diagnoses-dropdown{
+
+}
+
+.checkbox{
+    height: 320px;
+    width: 400px;
+    overflow: auto;
+    border: 1px solid black;
+}
+
+.top-buttons{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-bottom: 2%;
+    margin-top: 1%;
+}
+
+
+.top-buttons button{
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    color: black;
+    border: 0px;
+    cursor: pointer;
+    margin-right: 3%;
 }

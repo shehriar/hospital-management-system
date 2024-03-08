@@ -17,6 +17,7 @@ import { DoctorSignupComponent } from './doctor-portal/doctor-signup/doctor-sign
 import { DoctorHomeComponent } from './doctor-portal/home/home.component';
 import { AppointmentsComponent } from './doctor-portal/appointments/appointments.component';
 import { PatientInformationComponent } from './doctor-portal/patient-information/patient-information.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { PatientInformationComponent } from './doctor-portal/patient-information
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [PatientDetailsService],
   bootstrap: [AppComponent]
