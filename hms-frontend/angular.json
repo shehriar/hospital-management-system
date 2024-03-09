@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "hms-frontend:build:production"
+              "buildTarget": "hms-frontend:build:production"
             },
             "development": {
-              "browserTarget": "hms-frontend:build:development"
+              "buildTarget": "hms-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "hms-frontend:build"
+            "buildTarget": "hms-frontend:build"
           }
         },
         "test": {

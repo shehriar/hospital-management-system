@@ -1,5 +1,5 @@
 .page-container {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -8,6 +8,10 @@
     z-index: -1; /* Ensure the container is behind other content */
     color: black;
     grid-template-columns: 2fr 2fr;
+}
+
+.row{
+    display: flex;
 }
 
 .main-container{
@@ -23,7 +27,7 @@
 }
 
 .checkbox{
-    height: 320px;
+    height: 210px;
     width: 400px;
     overflow: auto;
     border: 1px solid black;

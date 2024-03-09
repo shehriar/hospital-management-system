@@ -41,7 +41,6 @@ export class Database{
     async returnAllDoctors(){
         const query = "SELECT doctor_id, doctor_name, doctor_email from Doctor;"
         const [result] = await pool.query(query);
-        console.log(result)
         return result;
     }
 
@@ -102,7 +101,6 @@ export class Database{
         // const query = "DELETE FROM Patient WHERE patient_email = 'rimsharizvi@gmail.com';"
         const query = "SELECT * from Patient;"
         const [result] = await pool.query(query);
-        console.log(result);
     }
 
     async insertToAppointment(values){
@@ -145,7 +143,7 @@ export class Database{
         await pool.query(query, values);
     }
     async returnAllPatientDiagnosis(values){
-        const query = "SELECT Diagnosis.diagnosis_name, PatientDiagnosis.date FROM Diagnosis, PatientDiagnosis WHERE diagnosis.diagnosis_id = (SELECT Diagnosis_id FROM PatientDiagnosis where patient_id = ?) AND PatientDiagnosis.patient_id = ?";
+        const query = "SELECT Diagnosis.diagnosis_name, PatientDiagnosis.date FROM PatientDiagnosis JOIN Diagnosis ON PatientDiagnosis.Diagnosis_id = Diagnosis.diagnosis_id WHERE PatientDiagnosis.patient_id = ?;";
         const [result] = await pool.query(query, values);
         return result;
     }
@@ -156,16 +154,20 @@ export class Database{
     }
 
     async returnAllPatientMedication(values){
-        const query = "SELECT Medication.medication_name, PatientMedication.dosage, PatientMedication.dateRange FROM Medication, PatientMedication WHERE Medication.medication_id = (SELECT Medication_id FROM PatientMedication where patient_id = ?) AND PatientMedication.patient_id = ?";
+        const query = "SELECT Medication.medication_name, PatientMedication.dosage, PatientMedication.dateRange FROM Medication JOIN PatientMedication ON Medication.medication_id = PatientMedication.Medication_id WHERE PatientMedication.patient_id = ?;";
         const [result] = await pool.query(query, values);
         return result;
         // console.log(result);
     }
 
+    async getDiagnosisID(value){
+        const query = "SELECT diagnosis_id FROM Diagnosis WHERE diagnosis_name = ?"
+        return await pool.query(query, value);
+    }
+
     async insertToDiagnosis(value){
         const query = "INSERT INTO Diagnosis(diagnosis_name) VALUES (?)";
         [result] = await pool.query(query, value);
-        
     }
 
     async returnAllDiagnoses(){
@@ -174,6 +176,10 @@ export class Database{
         return result;
     }
 
+    async getMedicationID(value){
+        const query = "SELECT medication_id FROM Medication WHERE medication_name = ?"
+        return await pool.query(query, value);
+    }
     async insertToMedication(value){
         const query = "INSERT INTO Medication(medication_name) VALUES (?)";
         await pool.query(query, value);

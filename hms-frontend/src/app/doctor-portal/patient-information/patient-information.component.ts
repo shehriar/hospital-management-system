@@ -13,7 +13,10 @@ export class PatientInformationComponent {
   allMedication : String[] = [];
   allDiagnoses : String[] = [];
   selectedDiagnosis: String = '';
-  selectedMedications: String[] = [];
+  dateRange! : String;
+  selectedMedications: { name: String; dosage?: number; startDate?: String; endDate?: String }[] = [];
+  currDate!: String;
+  errorMessage : boolean = false;
   constructor(private appointmentService : AppointmentService, private router : Router){}
 
   ngOnInit(){
@@ -35,15 +38,16 @@ export class PatientInformationComponent {
           this.allMedication.push(data[i].medication_name);
         }
       })
-      console.log(this.allMedication)
+      this.currDate = new Date().toISOString().split('T')[0];
+      
     })
   }
 
-  onMedicationChange(event: any, medication: String) {
+  onMedicationChange(event: any, medicationName: String) {
     if (event.target.checked) {
-        this.selectedMedications.push(medication);
+      this.selectedMedications.push({ name: medicationName });
     } else {
-        this.selectedMedications = this.selectedMedications.filter(m => m !== medication);
+      this.selectedMedications = this.selectedMedications.filter(m => m.name !== medicationName);
     }
   }
 
@@ -52,7 +56,21 @@ export class PatientInformationComponent {
   }
 
   onSubmit(){
-    console.log(this.selectedDiagnosis);
-    console.log(this.selectedMedications);
+    // console.log(this.selectedDiagnosis);
+    // console.log(this.selectedMedications);
+    if(this.selectedDiagnosis){
+      this.appointmentService.insertToDiagnoses(this.patientDetails.id, this.selectedDiagnosis, this.currDate).subscribe();
+    }
+
+    if(this.selectedMedications){
+      for(let i = 0; i < this.selectedMedications.length; i++) {
+        const medication = this.selectedMedications[i];
+        if (medication.startDate && medication.endDate && medication.dosage) {
+          const dateRange = `${medication.startDate} - ${medication.endDate}`;
+          this.appointmentService.insertToMedication(this.patientDetails.id, medication.name, medication.dosage, dateRange).subscribe();
+        }
+      }
+    }
+    this.onClick('doctor/appointments')
   }
 }

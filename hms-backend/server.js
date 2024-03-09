@@ -109,7 +109,6 @@ app.post('/api/verify-doctor-login', (req, res) => {
 
 app.post('/api/get-doctor-appointments', (req, res) =>{
   const doctorId = req.body[0];
-  console.log(doctorId);
   db.getDoctorAppointments(doctorId).then(function(result){
     res.status(200).send(result);
   })
@@ -125,6 +124,32 @@ app.get('/api/get-all-medication', (req, res) => {
   db.returnAllMedication().then(function(result){
     res.status(200).send(result);
   })
+})
+
+app.post('/api/insert-to-diagnoses', (req, res) => {
+  const patientID = req.body[0];
+  const diagnosis = req.body[1];
+  const date = req.body[2];
+  console.log([patientID, diagnosis, date])
+  db.getDiagnosisID(diagnosis).then(function(result){
+    const diagnosis_id = result[0][0]['diagnosis_id'];
+    db.insertToPatientDiagnosis([diagnosis_id, patientID, date]).then(function(result){
+      res.status(200).send(result);
+    })
+  })
+})
+
+app.post('/api/insert-to-medication', (req, res) => {
+  const patientId = req.body[0];
+  const medication = req.body[1];
+  const dosage = req.body[2];
+  const dateRange = req.body[3];
+  db.getMedicationID(medication).then(function(result){
+    const medication_id = result[0][0]['medication_id'];
+    db.insertToPatientMedication([patientId, medication_id, dosage, dateRange]).then(function(result){
+      res.status(200).send(result);
+    });
+  });
 })
 
 app.listen(port, () => {

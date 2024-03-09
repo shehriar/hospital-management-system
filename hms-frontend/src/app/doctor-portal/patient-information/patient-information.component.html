@@ -18,8 +18,8 @@
                 <td>{{patientDetails.phone}}</td>
             </table>
         </div>
-        <div>
-            <div class="diagnoses-dropdown grid-item">
+        <div class = "grid-item">
+            <div class="diagnoses-dropdown">
                 <h3>Diagnosis:</h3>
                 <input [(ngModel)]="selectedDiagnosis" autoComplete="on" list="suggestions" />
                 <datalist id="suggestions">
@@ -28,14 +28,29 @@
                     </ng-container>
                 </datalist>
             </div>
+            <h2>ADD DATE</h2>
             
             <h3>Medication to prescribe: </h3>
-            <div class="checkbox">
-                <ng-container *ngFor="let medication of allMedication; let i = index">
-                    <input type="checkbox" [id]="'medication' + i" [value]="medication"
-                           (change)="onMedicationChange($event, medication)">
-                    <label [for]="'medication' + i">{{medication}}</label><br>
-                </ng-container>
+            <div>
+                <div class="checkbox">
+                    <ng-container *ngFor="let medication of allMedication; let i = index">
+                        <input type="checkbox" [id]="'medication' + i" [value]="medication"
+                               (change)="onMedicationChange($event, medication)">
+                        <label [for]="'medication' + i">{{medication}}</label><br>
+                    </ng-container>
+                </div>
+                <div class="row" *ngFor="let medication of selectedMedications; let i = index">
+                    <h3>{{medication.name}}:</h3>
+                    <form action="" style="margin-top: 13px; margin-left: 20px;">
+                        <label for="">Dosage: </label>
+                        <input [(ngModel)]="medication.dosage" name="dosage-{{i}}" type="number" id="dosage" style="width: 30px; height: 20px; margin-left: 10px;"> mg
+                        <label for="" style="margin-left: 20px;">Date Range</label>
+                        <input [(ngModel)]="medication.startDate" name="startDate-{{i}}" type="date" value="{{currDate}}" style="width: 120px; height: 30px; margin-left: 10px;"> -
+                        <input [(ngModel)]="medication.endDate" name="endDate-{{i}}" type="date" value="{{currDate}}" style="width: 120px; height: 30px; margin-left: 0px;">
+                    </form>
+                    
+                    
+                </div>
             </div>
             <button (click)="onSubmit()">Submit</button>
         </div>
