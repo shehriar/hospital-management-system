@@ -6,6 +6,10 @@
     width: 100%;
 }
 
+img{
+    cursor: pointer;
+}
+
 .vertically-align{
     /* background-color: rgb(0, 0, 0); */
     position: absolute;

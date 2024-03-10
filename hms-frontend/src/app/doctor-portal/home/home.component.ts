@@ -27,10 +27,26 @@ export class DoctorHomeComponent {
         this.doctorDetails = doctor;
         this.isLoggedIn = true;
       }
+      else{
+        this.isLoggedIn = false;
+        this.doctorDetails = {
+          id: 0,
+          name: "",
+          email: "",
+          phone: "",
+          password: ""
+        }
+      }
     })
   }
 
   onButtonClick(path : string){
     this.router.navigateByUrl(path);
+  }
+
+  logout(){
+    this.doctorService.logout();
+    this.ngOnInit();
+    console.log(this.doctorDetails);
   }
 }

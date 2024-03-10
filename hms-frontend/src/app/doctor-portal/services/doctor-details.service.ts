@@ -22,6 +22,10 @@ export class DoctorDetailsService {
     return this.http.post('http://localhost:3000/api/verify-doctor-login', loginDetails);
   }
 
+  logout(){
+    this.doctorDetailsSubject.next(null);
+  }
+
   setDoctorDetails(doctor : DoctorDetails) {
     this.doctorDetailsSubject.next(doctor);
   }

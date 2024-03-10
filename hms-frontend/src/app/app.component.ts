@@ -34,6 +34,18 @@ export class AppComponent {
         this.loggedIn = true;
         this.username = this.patientDetails.name.split(" ")[0];
       }
+      else{
+        this.loggedIn = false;
+        this.username = "";
+        this.patientDetails = {
+          id : 0,
+          name : "",
+          email : "",
+          dob : "",
+          phone : "",
+          password : "",
+        }
+      }
     })
   }
 

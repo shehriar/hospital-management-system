@@ -28,7 +28,6 @@
                     </ng-container>
                 </datalist>
             </div>
-            <h2>ADD DATE</h2>
             
             <h3>Medication to prescribe: </h3>
             <div>
@@ -52,7 +51,11 @@
                     
                 </div>
             </div>
-            <button (click)="onSubmit()">Submit</button>
+            <div class = "buttons">
+                <button class = "back-button" (click)="onClick('doctor/appointments')">Back</button>
+                <button class = "submit-button" (click)="onSubmit()">Submit</button>
+            </div>
+            
         </div>
     </div>
     

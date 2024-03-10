@@ -17,9 +17,24 @@ export class HomeComponent {
         this.patientDetails = patient;
         this.loggedIn = true;
       }
+      else{
+        this.loggedIn = false;
+        this.patientDetails = {
+          id : 0,
+          name : "",
+          email : "",
+          dob : "",
+          phone : "",
+          password : "",
+        }
+      }
     })
   }
   onButtonClick(path : string){
     this.router.navigateByUrl(path);
+  }
+
+  logout(){
+    this.patientService.logout();
   }
 }

@@ -7,9 +7,10 @@
             </div>
             <button class = "patient-portal-button" (click)="onButtonClick('')"> Patient Portal</button>
         </div>
-        
-        <div *ngIf = "isLoggedIn">
-            <p>{{doctorDetails.name}}</p>
+        <div class = "main" style="margin-top: 1%; margin-left: 1%;" *ngIf="isLoggedIn">
+            <img height = "60px" style="border-radius: 50%;" src="assets/doctor.png" alt="">
+            <h3>{{doctorDetails.name}}</h3>
+            <button class = "logout-button" (click)="logout()">Log out</button>
         </div>
         
         <div class = "home-container">

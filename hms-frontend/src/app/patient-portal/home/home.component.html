@@ -5,6 +5,9 @@
     </div>
     <button class = "doctor-portal-button" (click)="onButtonClick('doctor')"> Doctor Portal</button>
 </div>
+<div *ngIf= "loggedIn" class="main-container">
+    <button class = "doctor-portal-button" style="border-radius: 5px;" (click)="logout()"> Log Out</button>
+</div>
 <div class = "home-container">
     <div class = "buttons-row">
         <div class = "button-div grid-item" (click)="onButtonClick('')">

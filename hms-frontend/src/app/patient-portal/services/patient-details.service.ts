@@ -23,6 +23,10 @@ export class PatientDetailsService {
     return this.http.post('http://localhost:3000/api/patient_id', [email]);
   }
 
+  logout(){
+    this.patientDetailsSubject.next(null);
+  }
+
   setPatientDetails(patient : PatientDetails) {
     this.patientDetailsSubject.next(patient);
   }
